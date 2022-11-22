@@ -60,9 +60,9 @@ function getErrorMessage(err) {
 
 function readHighlightedAriaLabel(node) {
   if (node.isBranch) {
-    srSpeak(node.ariaLabel + ', upper category')
+    srSpeak(node.ariaLabel + ', supercategory')
   } else if (node.isLeaf && !node.isRootNode) {
-    srSpeak(node.parentNode.ariaLabel + '. ' + node.ariaLabel)
+    srSpeak(node.ariaLabel + ', ' + node.parentNode.ariaLabel)
   } else if (node.isLeaf && node.isRootNode) {
     srSpeak(node.ariaLabel)
   }
@@ -70,9 +70,9 @@ function readHighlightedAriaLabel(node) {
 
 function readSelectedAriaLabel(node, isSelected) {
   if (isSelected) {
-    srSpeak(node.ariaLabel + ' selected')
+    srSpeak(node.ariaLabel + ', ON')
   } else if (!isSelected) {
-    srSpeak(node.ariaLabel + ' not selected')
+    srSpeak(node.ariaLabel + ', OFF')
   }
 }
 
@@ -1549,6 +1549,11 @@ export default {
         if (nextState) node.showAllChildrenOnSearch = true
       } else {
         nextState = node.isExpanded = !node.isExpanded
+        if (node.isExpanded) {
+          srSpeak(node.ariaLabel)
+        } else if (!node.isExpanded) {
+          srSpeak(node.ariaLabel)
+        }
       }
 
       if (nextState && !node.childrenStates.isLoaded) {
