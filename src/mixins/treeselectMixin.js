@@ -59,21 +59,25 @@ function getErrorMessage(err) {
 }
 
 function readHighlightedAriaLabel(node) {
+  let message = ''
   if (node.isBranch) {
-    srSpeak(node.ariaLabel + ', supercategory')
+    message = ', SUPER'
   } else if (node.isLeaf && !node.isRootNode) {
-    srSpeak(node.ariaLabel + ', ' + node.parentNode.ariaLabel)
+    message = ', SUB'
   } else if (node.isLeaf && node.isRootNode) {
-    srSpeak(node.ariaLabel)
+    message = ''
   }
+  srSpeak(node.ariaLabel + message)
 }
 
 function readSelectedAriaLabel(node, isSelected) {
+  let message = ''
   if (isSelected) {
-    srSpeak(node.ariaLabel + ', ON')
+    message = ', ON'
   } else if (!isSelected) {
-    srSpeak(node.ariaLabel + ', OFF')
+    message = ', OFF'
   }
+  srSpeak(node.ariaLabel + message)
 }
 
 /*
@@ -1543,6 +1547,7 @@ export default {
 
     toggleExpanded(node) {
       let nextState
+      let message = ''
 
       if (this.localSearch.active) {
         nextState = node.isExpandedOnSearch = !node.isExpandedOnSearch
@@ -1550,10 +1555,11 @@ export default {
       } else {
         nextState = node.isExpanded = !node.isExpanded
         if (node.isExpanded) {
-          srSpeak(node.ariaLabel)
+          message = ', OPEN'
         } else if (!node.isExpanded) {
-          srSpeak(node.ariaLabel)
+          message = ', CLOSED'
         }
+        srSpeak(node.ariaLabel + message)
       }
 
       if (nextState && !node.childrenStates.isLoaded) {
