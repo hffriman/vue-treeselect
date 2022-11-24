@@ -59,20 +59,26 @@ function getErrorMessage(err) {
 }
 
 function readHighlightedAriaLabel(node) {
+  let message = ''
   if (node.isBranch) {
-    srSpeak(node.ariaLabel + ', supercategory')
+    message = `, $t('Treeselect.supercategory_info')`
+    srSpeak(node.ariaLabel + message)
   } else if (node.isLeaf && !node.isRootNode) {
-    srSpeak(node.ariaLabel + ', ' + node.parentNode.ariaLabel)
+    message = `, $t('Treeselect.subcategory_partOf') ${node.parentNode.ariaLabel}`
+    srSpeak(node.ariaLabel + message)
   } else if (node.isLeaf && node.isRootNode) {
     srSpeak(node.ariaLabel)
   }
 }
 
 function readSelectedAriaLabel(node, isSelected) {
+  let message = ''
   if (isSelected) {
-    srSpeak(node.ariaLabel + ', ON')
+    message = `, $t('Treeselect.option_selected')`
+    srSpeak(node.ariaLabel + message)
   } else if (!isSelected) {
-    srSpeak(node.ariaLabel + ', OFF')
+    message = `, $t(''Treeselect.option_not_selected)`
+    srSpeak(node.ariaLabel + message)
   }
 }
 
@@ -1543,6 +1549,7 @@ export default {
 
     toggleExpanded(node) {
       let nextState
+      let message = ''
 
       if (this.localSearch.active) {
         nextState = node.isExpandedOnSearch = !node.isExpandedOnSearch
@@ -1550,9 +1557,11 @@ export default {
       } else {
         nextState = node.isExpanded = !node.isExpanded
         if (node.isExpanded) {
-          srSpeak(node.ariaLabel)
+          message = `, $t('Treeselect.supercategory_opened')`
+          srSpeak(node.ariaLabel + message)
         } else if (!node.isExpanded) {
-          srSpeak(node.ariaLabel)
+          message = `, $t('Treeselect.supercategory_closed')`
+          srSpeak(node.ariaLabel + message)
         }
       }
 

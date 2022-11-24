@@ -1,5 +1,5 @@
 <template>
-  <treeselect aria-label="Select options. Navigate with arrow buttons and select with Enter. Use right arrow to open supercategories." :options="options" :multiple="true" />
+  <treeselect aria-label="Select options" :options="options" :multiple="true" />
 </template>
 
 <script>
