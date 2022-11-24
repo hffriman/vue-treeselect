@@ -10,11 +10,11 @@
 
 
 ### Additions to the original component:
-    - Support for aria-labels
+    - Support for aria-labels and their localization
     - Functionality that
         - makes the screen reader read the aria-labels of the options 
         - recognizes when options are selected/deselected)
-        - informs the user if the branch is the option is branch/leaf node
+        
 
 ### Features
 
