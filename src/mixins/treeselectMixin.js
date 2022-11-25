@@ -1555,7 +1555,7 @@ export default {
       } else {
         nextState = node.isExpanded = !node.isExpanded
         if (node.isExpanded) {
-          message = ', OPEN'
+          message = ', OPEN,' + node.children.length
         } else if (!node.isExpanded) {
           message = ', CLOSED'
         }

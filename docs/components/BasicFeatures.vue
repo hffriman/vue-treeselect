@@ -17,23 +17,7 @@
       options: [ {
         id: 'fruits',
         label: 'Fruits',
-        children: [ {
-          id: 'apple',
-          label: 'Apple 🍎',
-          isNew: true,
-        }, {
-          id: 'grapes',
-          label: 'Grapes 🍇',
-        }, {
-          id: 'pear',
-          label: 'Pear 🍐',
-        }, {
-          id: 'strawberry',
-          label: 'Strawberry 🍓',
-        }, {
-          id: 'watermelon',
-          label: 'Watermelon 🍉',
-        } ],
+        children: [],
       }, {
         id: 'vegetables',
         label: 'Vegetables',
